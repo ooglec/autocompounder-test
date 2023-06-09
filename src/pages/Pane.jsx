@@ -6,12 +6,13 @@ import Info from './Info2'
 const Pane = () => {
   return (
     <div className='my-5 p-5 box tab-pill' style={{width: "80vw"}}>
-        <Tabs variant="pills"  defaultActiveKey="first" className='py-3' 
+    <h4 className=''>Autocompounder Test</h4>
+        <Tabs variant='pills'  defaultActiveKey="first" className='py-3' 
       fill>
-        <Tab eventKey="first" title="Stake"  >
+        <Tab tabClassName={'greenTab'} eventKey="first" title="Stake"  >
           <Home/>
         </Tab>
-        <Tab eventKey="second" title="Unstake">
+        <Tab tabClassName={'greenTab'} eventKey="second" title="Unstake">
           <Info/>
         </Tab>
       </Tabs>

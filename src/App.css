@@ -58,9 +58,19 @@
   color: white;
 }
 
-.tab-pill  ul > li > a{
-  background-color: aquamarine !important;
+
+.nav-pills .nav-item .active{
+  background-color: #121511 !important;
+  border-bottom: 2px solid  #4FCE0D !important;
+  border-radius: 0px;
+  font-weight: 500;
 }
+
+.nav-pills .nav-item .nav-link{
+    color: white;
+}
+
+
 
 
 .read-the-docs {
@@ -92,7 +102,7 @@
 }
 
 .text-green {
-  color: rgb(173, 254, 173);
+  color: #4FCE0D ;
   font-weight: 600;
 }
 
