@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       <header className='d-flex flex-row justify-content-between text-white w-full w-100'>
-        <h4 className=''>User Accumulator Test</h4>
+        <h4 className=''>Autocompounder</h4>
         {account && (<p style={{ borderRadius: "5px" }} className='border py-1 px-3'>{account.slice(0, 10)}...{account.slice(20, 30)}</p>)}
       </header>
       <div className="App d-flex flex-column">
