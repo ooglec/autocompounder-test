@@ -33,7 +33,7 @@ function App() {
       </header>
       <div className="App d-flex flex-column">
         <div>
-        <Pane></Pane>
+        <Pane/>
         </div>
       </div>
     </div>

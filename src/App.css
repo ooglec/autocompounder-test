@@ -58,6 +58,11 @@
   color: white;
 }
 
+.tab-pill  ul > li > a{
+  background-color: aquamarine !important;
+}
+
+
 .read-the-docs {
   color: #888;
 }

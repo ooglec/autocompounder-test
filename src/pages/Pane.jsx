@@ -5,7 +5,7 @@ import Info from './Info2'
 
 const Pane = () => {
   return (
-    <div className='my-5 p-4 box' style={{width: "80vw"}}>
+    <div className='my-5 p-5 box tab-pill' style={{width: "80vw"}}>
         <Tabs variant="pills"  defaultActiveKey="first" className='py-3' 
       fill>
         <Tab eventKey="first" title="Stake"  >

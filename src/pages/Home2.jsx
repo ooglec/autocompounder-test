@@ -47,7 +47,7 @@ const Home = () => {
 
     //
     return (
-        <div className='p-5   d-flex flex-column align-items-start'>
+        <div className='py-5  d-flex flex-column align-items-start'>
             <input value={value} onChange={(e) => handleChange(e)} className='my-2 form-control' placeholder="PLS" />
             <p className='align-items-start'>Balance: {plsBalance ? formatEther(plsBalance) : 0} {"PLS"}</p>
             {!account ? <button onClick={sign()} className='my-2 w-100'>Connect</button> : plsBalance && (plsBalance > 0 && allowance > parseInt(value) ? <button onClick={() => stakeIt()} className='my-2 w-100'>Stake</button> : <button onClick={approveIt} className='my-2 w-100'>Approve</button>)}
