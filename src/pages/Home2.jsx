@@ -19,7 +19,11 @@ const Home = () => {
         setValue(e.target.value)
         if (parseInt(e.target.value) == 0) {
             setError("Value must greater than 0")
-        } else {
+        } else if (parseFloat(value) < parseFloat(ethers.utils.formatEther(plsBalance).toString())){
+            setError("Error: More than Pls Balance")
+            return 
+        }
+        else {
             setError("")
         }
     }
@@ -41,6 +45,10 @@ const Home = () => {
         if (parseInt(value) <= 0) {
             alert('Greater than 0')
             return
+        }
+        if (parseFloat(value) < parseFloat(ethers.utils.formatEther(plsBalance).toString())){
+            setError("More than Pls Balance")
+            return 
         }
         stake(ethers.utils.parseEther(value.toString()))
     }
