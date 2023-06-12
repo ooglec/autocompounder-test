@@ -46,7 +46,7 @@ const Home = () => {
             alert('Greater than 0')
             return
         }
-        if (parseFloat(value) < parseFloat(ethers.utils.formatEther(plsBalance).toString())){
+        if (parseFloat(value) > parseFloat(ethers.utils.formatEther(plsBalance).toString())){
             setError("More than Pls Balance")
             return 
         }
