@@ -18,8 +18,6 @@ const Info = ({autoCompounder}) => {
     const {state: compoundMpPlsState, send: compoundMpPls} = useContractFunction(RouterContract, 'compoundMpPls', {transactionName: 'compoundMpPls'})
     const {state: claimAndStakeEsPlsState, send: claimAndStakeEsPls} = useContractFunction(RouterContract, 'claimAndStakeEsPls', {transactionName: 'claimAndStakeEsPls'})
     const {state: unstakeEsPlsState, send: unstakeEsPls} = useContractFunction(AutoCompounder, 'unStakeEsPls', {transactionName: 'unStakeEsPls'})
-   
-
 
     const { value: assets, error: err } = useCall({
         contract: RouterContract,

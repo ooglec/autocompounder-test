@@ -75,8 +75,8 @@ const Create = () => {
             !loading ? <button className='my-4' onClick={createIt}>Create</button> :
             <div>
                 <div className=''></div>
-                <h4 className='text-white'>Creating Compounder</h4>
-                {createState.status && createState.status != 'None' && <p className='text-white'>Status: {createState.status}....</p>}
+                <h4 className='text-white'>Creating Compounder.....</h4>
+                {createState.status && createState.status != 'None' &&  <p className='text-white'>Status: {createState.status}....</p>}
             </div>
         }
 

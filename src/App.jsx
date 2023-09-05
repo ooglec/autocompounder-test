@@ -14,7 +14,7 @@ import Create from './pages/Create'
 function App() {
 
   const [count, setCount] = useState(0)
-  const { account, chainId } = useEthers()
+  const { account, chainId, activateBrowserWallet } = useEthers()
 
   const [compounder, setCompounder] = useState(null)
 
@@ -51,9 +51,17 @@ function App() {
         <h4 className=''></h4>
         {account && (<p style={{ borderRadius: "5px" }} className='border py-1 px-3'>{account.slice(0, 10)}...{account.slice(20, 30)}</p>)}
       </header>
-      <div className="App d-flex flex-column">
+      <div className="App d-flex flex-column align-center">
         <div>
-        {compounder ? (compounder == ethers.constants.AddressZero ? <Create /> :  <Pane autoCompounder={compounder}/> ) : <div className='text-white'><h3>Loading....</h3></div>}
+        {
+          account ? (
+            compounder ? (compounder == ethers.constants.AddressZero ? <Create /> :  <Pane autoCompounder={compounder}/> ) : <div className='text-white my-3'><h3>Loading....</h3></div>
+          ) : (
+            <div className='align-items-center'>
+              <button onClick={activateBrowserWallet}>Connect Wallet</button>
+            </div>
+          )
+        }
         </div>
       </div>
     </div>
