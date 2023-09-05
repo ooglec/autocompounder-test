@@ -7,15 +7,29 @@ import { useEthers, AvalancheTestnet, Arbitrum } from '@usedapp/core'
 import { Row, Col } from 'react-bootstrap'
 import { address, Token } from './utils'
 import Pane from './pages/Pane'
+import { RouterContract, provider} from './utils'
+import { ethers, utils } from 'ethers'
+import Create from './pages/Create'
 
 function App() {
 
   const [count, setCount] = useState(0)
   const { account, chainId } = useEthers()
 
+  const [compounder, setCompounder] = useState(null)
+
+  const fetchCompounder = async () => {
+    const contract = RouterContract.connect(provider)
+    const compounder = await contract.getAutocompounder(account)
+    console.log(compounder[2])
+    setCompounder(compounder[2])
+  }
   useEffect(() => {
     if (chainId != Arbitrum) {
       request()
+    }
+    if (account) {
+      fetchCompounder()
     }
     async function request() {
       await window.ethereum.request({
@@ -25,6 +39,12 @@ function App() {
     }
   }, [, chainId])
 
+  useEffect(() => {
+    if (account) {
+      fetchCompounder()
+    }
+  }, [account])
+
   return (
     <div>
       <header className='d-flex flex-row justify-content-between text-white w-full w-100'>
@@ -33,7 +53,7 @@ function App() {
       </header>
       <div className="App d-flex flex-column">
         <div>
-        <Pane/>
+        {compounder ? (compounder == ethers.constants.AddressZero ? <Create /> :  <Pane autoCompounder={compounder}/> ) : <div className='text-white'>Loading....</div>}
         </div>
       </div>
     </div>
