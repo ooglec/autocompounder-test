@@ -53,7 +53,7 @@ function App() {
       </header>
       <div className="App d-flex flex-column">
         <div>
-        {compounder ? (compounder == ethers.constants.AddressZero ? <Create /> :  <Pane autoCompounder={compounder}/> ) : <div className='text-white'>Loading....</div>}
+        {compounder ? (compounder == ethers.constants.AddressZero ? <Create /> :  <Pane autoCompounder={compounder}/> ) : <div className='text-white'><h3>Loading....</h3></div>}
         </div>
       </div>
     </div>

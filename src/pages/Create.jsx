@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
 import { FactoryContract } from '../utils'
 import { useContractFunction, useEthers } from '@usedapp/core'
 //
@@ -15,29 +15,71 @@ import { useContractFunction, useEthers } from '@usedapp/core'
 
 const Create = () => {
     const { account } = useEthers()
+    const [loading,  setLoading] = useState(false)
 
-    const requestCreateCompounder = async () => {
-        //send a request to lambda to get the signature, salt, and deadline
-        //send the account as a param
-        
-    }
+    const requestCreateCompounder = async (account) => {
+        const vals = {
+            sign: '',
+            salt: '',
+            deadline: ''
+        };
+    
+        try {
+            const response = await fetch(`https://serverless-3pin.onrender.com/createCompounder?userAddress=${account}`, {
+                method: 'POST',
+            });
+    
+            if (response.ok) {
+                const values = await response.json();
+                vals.sign = values.signature;
+                vals.salt = values.salt;
+                vals.deadline = values.deadline;
+            } else {
+                console.log('Request failed with status:', response.status);
+            }
+        } catch (err) {
+            console.log('Error:', err);
+        }
+    
+        return vals;
+    };
+    
 
     const { state: createState, send: create } = useContractFunction(FactoryContract, 'createAutoCompounder', { transactionName: 'create' })
 
-    const createIt = (sign, salt, deadline) => {
-        create(sign,salt, deadline)
+    const createIt = async () => {
+        setLoading(true)
+        try{
+            const values = await requestCreateCompounder(account)
+            console.log(values)
+            await create(values.sign, values.salt, values.deadline)
+        }catch(err){
+            console.log(err)
+        }finally{
+            setLoading(false)
+        }
     }
 
     useEffect(() => {
         if (createState.status === 'Success') {
             alert('Success')
+            window.location.reload()
         }else if (createState.status === 'Exception') {
             alert('Error', createState.errorMessage)
         }
     }, [createState])
   return (
     <div>
-        <button onClick={requestCreateCompounder}>Create</button>
+        <h1 className='text-white'>Create Your Compounder</h1>
+        {
+            !loading ? <button className='my-4' onClick={createIt}>Create</button> :
+            <div>
+                <div className=''></div>
+                <h4 className='text-white'>Creating Compounder</h4>
+                {createState.status && createState.status != 'None' && <p className='text-white'>Status: {createState.status}....</p>}
+            </div>
+        }
+
     </div>
   )
 }
