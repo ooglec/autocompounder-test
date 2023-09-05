@@ -5,7 +5,7 @@ import { Arbitrum, useCall, useContractFunction, useContractCall, useEthers } fr
 import { utils } from 'ethers'
 import { formatEther } from 'ethers/lib/utils'
 import autoCompounderAbi from '../abis/autoCompounder.json'
-import { Contract } from 'ethers'
+import { Contract } from '@ethersproject/contracts'
 
 const Info = ({autoCompounder}) => {
     const { account } = useEthers()
